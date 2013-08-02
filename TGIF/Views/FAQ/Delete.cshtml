@@ -1,0 +1,40 @@
+﻿@model TGIF.Models.FAQ
+
+@{
+    ViewBag.Title = "Delete FAQ";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>FAQ Detail</legend>
+
+    <div class="display-label">
+         <h5>@Html.DisplayNameFor(model => model.Question)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Question)
+    </div>
+
+    <div class="display-label">
+         <h5>@Html.DisplayNameFor(model => model.Answer)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Answer)
+    </div>
+
+    <div class="display-label">
+        <h5> @Html.DisplayNameFor(model => model.Type)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> 
+    </p>
+     @Html.ActionLink("Back to List", "Index",null, new { @class = "my-class" })
+}

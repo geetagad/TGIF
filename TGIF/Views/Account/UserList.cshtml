@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TGIF.Models.UserProfile>
+
+@{
+    ViewBag.Title = "User List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By School" />
+</form>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolName)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentName)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomePhone)&nbsp;&nbsp;
+        </th>
+     </tr>
+
+@foreach (var item in Model) {
+    <tr>
+         <td>
+            @Html.DisplayFor(modelItem => item.SchoolName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomePhone)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Details", "UserDetail", new { id=item.UserId  },new { @class = "my-class" }) 
+            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+
+</table>
+
+@using (Html.BeginForm("ExportUserList", "Account", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    <input  type="submit" name="Export User List" id="Export" value="Export List to Excel" />
+}

@@ -1,0 +1,106 @@
+﻿@model TGIF.Models.Event
+
+@{
+    ViewBag.Title = "Delete Event";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<fieldset>
+    <legend>Event Detail</legend>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Title)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Presenter)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Presenter)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Introduction)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Introduction)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.ReportingStartDate)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportingStartDate)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.ReportingEndDate)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReportingEndDate)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Location)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Eligibility)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Eligibility)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.RegistrationBeginDate)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegistrationBeginDate)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.RegistrationEndDate)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegistrationEndDate)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.CancellationDate)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CancellationDate)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Fee)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fee)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.Conclusion)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conclusion)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "my-class" })
+   
+}

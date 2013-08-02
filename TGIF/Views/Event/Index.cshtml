@@ -1,0 +1,118 @@
+﻿@model IEnumerable<TGIF.Models.Event>
+
+@{
+    ViewBag.Title = "Event List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By Title" />
+</form>
+
+<p>
+    @if (User.IsInRole("Administrator"))
+    {
+        @Html.ActionLink("Create New Event", "Create", null, new { @class = "my-class" })
+    }
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)&nbsp;&nbsp;
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ReportingStartDate)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportingEndDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Eligibility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationBeginDate)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.RegistrationEndDate)&nbsp;&nbsp;
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.CancellationDate)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Conclusion)
+        </th>
+        <th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Introduction)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportingStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportingEndDate)
+            </td>
+            @* <td>
+            @Html.DisplayFor(+odelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Eligibility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationBeginDate)
+        </td>*@
+           @* <td>
+                @Html.DisplayFor(modelItem => item.RegistrationEndDate)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.CancellationDate)
+            </td>*@
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Conclusion)
+        </td>*@
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.EventId }, new { @class = "my-class" })
+                @if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink(" | Edit", "Edit", new { id = item.EventId }, new { @class = "my-class" }) 
+                    @Html.ActionLink(" | Delete", "Delete", new { id = item.EventId }, new { @class = "my-class" })
+                }
+                else
+                {
+                    if (item.UserEvents.Count() > 0)
+                    {
+                        if (item.UserEvents.Where(r => r.UserId == WebSecurity.GetUserId(User.Identity.Name) && r.EventID == item.EventId).Count() > 0 && item.CancellationDate >= DateTime.Now)
+                        {
+                    @Html.ActionLink("Cancel Registration", "CancelRegistration", new { id = item.EventId }, new { @class = "my-class" })
+                        }
+                    }
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+@if (User.IsInRole("Administrator"))
+{
+    using (Html.BeginForm("ExportEventList", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <input type="submit" name="Export Event List" id="Export" value="Export List to Excel" />
+    }
+}

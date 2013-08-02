@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TGIF.Models.RegisteredUser>
+
+@{
+    ViewBag.Title = "Registered User List";
+}
+
+<h2>@ViewBag.Title </h2>  
+@*<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="SearchBySchoolName" />
+</form>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+ 
+
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)&nbsp;&nbsp;
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SchoolName)&nbsp;&nbsp;
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)&nbsp;&nbsp;
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)&nbsp;&nbsp;
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)&nbsp;&nbsp;
+            </th>
+ 
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SchoolName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+               
+    <input type="submit" value="Email Registered Users" />
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index",null,new { @class = "my-class" })
+    </div>
+}
+

@@ -1,0 +1,63 @@
+﻿@model TGIF.Models.UserProfile
+
+@{
+    ViewBag.Title = "TGIF User Details:";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <div class="display-label">
+        <b>@Html.DisplayNameFor(model => model.SecurityCode)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SecurityCode)
+    </div>
+
+    <div class="display-label">
+        <b>@Html.DisplayNameFor(model => model.StudentName)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StudentName)
+    </div>
+
+    <div class="display-label">
+        <b>@Html.DisplayNameFor(model => model.SchoolName)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SchoolName)
+    </div>
+
+    <div class="display-label">
+        <b>@Html.DisplayNameFor(model => model.ParentName)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentName)
+    </div>
+
+    <div class="display-label">
+        <b>@Html.DisplayNameFor(model => model.HomePhone)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomePhone)
+    </div>
+
+    <div class="display-label">
+        <b>@Html.DisplayNameFor(model => model.HomeAddress)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomeAddress)
+    </div>
+</fieldset>
+<p>
+    @if (User.IsInRole("Administrator"))
+    {
+        @Html.ActionLink("Back to List", "UserList",null, new { @class = "my-class" }) 
+    }
+    else
+    {
+        @Html.ActionLink("Edit", "EditUser", new { id = Model.UserId },new { @class = "my-class" })
+        @Html.ActionLink("Volunteer", "Details", "Volunteer",new { id = Model.UserId },new { @class = "my-class" })
+    }
+
+</p>

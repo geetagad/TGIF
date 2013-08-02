@@ -1,0 +1,37 @@
+﻿@model TGIF.Models.Event
+
+@{
+    ViewBag.Title = "Cancel Registration";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<span style="color:red;">Are you sure to Cancel Registartion for this event?</span>
+
+<h3>@Html.DisplayFor(model => model.Title)</h3>
+
+<h4>@Html.DisplayFor(model => model.Introduction)</h4>
+
+<ul>
+    <li>@Html.DisplayNameFor(model => model.Presenter) : @Html.DisplayFor(model => model.Presenter)</li>
+    <li>@Html.DisplayNameFor(model => model.ReportingStartDate) : @Html.DisplayFor(model => model.ReportingStartDate)</li>
+    <li>@Html.DisplayNameFor(model => model.ReportingEndDate) : @Html.DisplayFor(model => model.ReportingEndDate)</li>
+    <li>@Html.DisplayNameFor(model => model.Location) : @Html.DisplayFor(model => model.Location)</li>
+    <li>@Html.DisplayNameFor(model => model.Eligibility) : @Html.DisplayFor(model => model.Eligibility)</li>
+    <li>@Html.DisplayNameFor(model => model.RegistrationBeginDate) : @Html.DisplayFor(model => model.RegistrationBeginDate)</li>
+    <li>@Html.DisplayNameFor(model => model.RegistrationEndDate) : @Html.DisplayFor(model => model.RegistrationEndDate)</li>
+    <li>@Html.DisplayNameFor(model => model.CancellationDate) : @Html.DisplayFor(model => model.CancellationDate)</li>
+    <li>@Html.DisplayNameFor(model => model.Fee) : @Html.DisplayFor(model => model.Fee)</li>
+</ul>
+
+<h4>@Html.DisplayFor(model => model.Conclusion)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()   
+    <input type="submit" value="Cancel Registration" /> 
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index",null,new { @class = "my-class" })
+    </div>
+}

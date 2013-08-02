@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "PaypalTest";
+}
+
+<h2>PaypalTest</h2>
+
+@using (Html.BeginForm("PostToPayPal", "PayPal"))
+{
+<div>
+    <table >
+        <tr>
+            <td>
+                Item Name:
+            </td>
+            <td>
+                <input type="text" name="item" value="book"  />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Price:
+            </td>
+            <td>
+                $<input type="text" name="amount" value="200"  />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="btnsubmit" value="Pay with Paypal" />
+            </td>
+        </tr>
+    </table>
+</div>
+}

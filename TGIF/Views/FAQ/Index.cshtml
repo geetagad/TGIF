@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TGIF.Models.FAQ>
+
+@{
+    ViewBag.Title = "FAQ List";
+}
+
+<h2>@ViewBag.Title </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null,  new { @class = "my-class" })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FAQId }, new { @class = "my-class" }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.FAQId }, new { @class = "my-class" })*@ 
+            @Html.ActionLink("Delete", "Delete", new { id=item.FAQId }, new { @class = "my-class" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model TGIF.Models.Volunteer
+
+@{
+    ViewBag.Title = "Volunteer Details:";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend></legend>
+
+    @*<div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Name)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Address)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Phone)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Email)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>*@
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Skills)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Skills)
+    </div>
+
+     <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Comment)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comment)
+    </div>
+</fieldset>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id=Model.Id }) | *@ 
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Myprofile", "UserDetail", "Account", new { id=WebSecurity.GetUserId(User.Identity.Name) },new { @class = "my-class" } )
+</p>

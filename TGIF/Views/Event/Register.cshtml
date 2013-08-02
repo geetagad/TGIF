@@ -1,0 +1,53 @@
+﻿@model TGIF.Models.UserEvent
+
+@{
+    ViewBag.Title = "TGIF Event Registration";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Event Registration Form</legend>
+    
+        @Html.Partial("_ReleaseWaiver")
+
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.EventID)
+        @Html.HiddenFor(model => model.RegistrationDate)
+
+        <div class="editor-field">
+            @*@Html.RadioButton("agree","true")<b>Yes, I agree to the terms</b>*@
+            @Html.RadioButton("Yes, I agree to the terms", 1, true)<b>Yes, I agree to the terms</b>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Attendees)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Attendees)
+            @Html.ValidationMessageFor(model => model.Attendees)
+        </div>
+    </fieldset>
+     
+    @*<fieldset>
+        <legend>Event Registration Fee</legend>
+
+        <button name="PayPalButton" style="margin-right: 7px;" onclick="PostToPayPal()">
+            <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" />
+        </button>
+    </fieldset>*@
+    
+    <input type="submit" value="Register" />
+    
+    <div>
+    @Html.ActionLink("Back to List", "Index",null,new { @class = "my-class" })
+    </div>
+}
+

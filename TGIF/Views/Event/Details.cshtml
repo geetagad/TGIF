@@ -1,0 +1,47 @@
+﻿@model TGIF.Models.Event
+
+@{
+    ViewBag.Title = "Event Details:";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+
+<h3>@Html.DisplayFor(model => model.Introduction)</h3>
+
+<ul>
+    <li><b>@Html.DisplayNameFor(model => model.Presenter) : </b>@Html.DisplayFor(model => model.Presenter)</li>
+    <li><b>@Html.DisplayNameFor(model => model.ReportingStartDate) : </b>@Html.DisplayFor(model => model.ReportingStartDate)</li>
+    <li><b>@Html.DisplayNameFor(model => model.ReportingEndDate) : </b>@Html.DisplayFor(model => model.ReportingEndDate)</li>
+    <li><b>@Html.DisplayNameFor(model => model.Location) : </b>@Html.DisplayFor(model => model.Location)</li>
+    <li><b>@Html.DisplayNameFor(model => model.Eligibility) : </b>@Html.DisplayFor(model => model.Eligibility)</li>
+    <li><b>@Html.DisplayNameFor(model => model.RegistrationBeginDate) : </b>@Html.DisplayFor(model => model.RegistrationBeginDate)</li>
+    <li><b>@Html.DisplayNameFor(model => model.RegistrationEndDate) : </b>@Html.DisplayFor(model => model.RegistrationEndDate)</li>
+    <li><b>@Html.DisplayNameFor(model => model.CancellationDate) : </b>@Html.DisplayFor(model => model.CancellationDate)</li>
+    <li><b>@Html.DisplayNameFor(model => model.Fee) : </b>@Html.DisplayFor(model => model.Fee)</li>
+</ul>
+
+<h3>@Html.DisplayFor(model => model.Conclusion)</h3>
+
+
+
+<p>
+    @if (User.IsInRole("Administrator"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.EventId },new { @class = "my-class" })
+        @Html.ActionLink("Registered Users", "RegisteredUser", new { id = Model.EventId },new { @class = "my-class" }) 
+    }
+    else
+    {
+        if (User.Identity.Name != null && User.Identity.Name != "")
+        {
+            if (Model.UserEvents.Where(r => r.UserId == WebSecurity.GetUserId(User.Identity.Name) && r.EventID == Model.EventId).Count() == 0 && Model.RegistrationEndDate >= DateTime.Now)
+            {
+                @Html.ActionLink("Register", "Register", new { id = Model.EventId },new { @class = "my-class" })
+            }
+        }
+      
+    }
+    @Html.ActionLink("Back to List", "Index",null,new { @class = "my-class" })
+</p>

@@ -1,0 +1,46 @@
+﻿@model TGIF.Models.Volunteer
+
+@{
+    ViewBag.Title = "Volunteer Signup";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.UserId)
+
+    <fieldset>
+        <legend>If you want to Volunteer please enter following information</legend>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Skills)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Skills)
+            @Html.ValidationMessageFor(model => model.Skills)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+   @Html.ActionLink("MyProfile", "UserDetail", "Account", new { id =  Model.UserId }, new { @class = "my-class" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TGIF.Models.FAQ>
+
+@{
+    //ViewBag.Title = "FAQ";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var item in Model)
+{
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+           <h5> @Html.DisplayFor(modelItem => item.Question)</h5>
+                @Html.DisplayFor(modelItem => item.Answer)
+        </div>
+      </fieldset> 
+       
+}
+
+
+

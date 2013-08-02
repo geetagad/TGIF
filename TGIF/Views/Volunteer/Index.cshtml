@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TGIF.Models.VolunteerUser>
+
+@{
+    ViewBag.Title = "Volunteer List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By School" />
+</form>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentName)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolName)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Skills)&nbsp;&nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)&nbsp;&nbsp;
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Skills)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+@if (User.IsInRole("Administrator"))
+{
+    using (Html.BeginForm("ExportVolunteerList", "Volunteer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="submit" name="Export Volunteer List" id="Export" value="Export List to Excel" />
+    }
+}

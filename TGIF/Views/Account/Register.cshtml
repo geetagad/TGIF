@@ -1,0 +1,116 @@
+﻿@model TGIF.Models.RegisterModel
+
+@{
+    ViewBag.Title = "TGIF Member Registration";
+  
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<span style="color:red;">* All Fields on this form are required.</span>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td>
+                <fieldset>
+                    <legend>Member Login Information</legend>
+                    <ol>
+                        <li>
+                            @Html.LabelFor(m => m.UserEmail)
+                            @*@Html.TextBoxFor(m => m.UserEmail)*@
+                            @Html.TextBoxFor(m => m.UserEmail, new { type = "email" })
+                            @Html.ValidationMessageFor(m => m.UserEmail)
+                        </li>
+                        <li>
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password)
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </li>
+                        <li>
+                            @Html.LabelFor(m => m.ConfirmPassword)
+                            @Html.PasswordFor(m => m.ConfirmPassword)
+                            @Html.ValidationMessageFor(m =>  m.ConfirmPassword)
+                        </li>
+                    </ol>
+                </fieldset>
+            </td>
+            <td>
+                <fieldset>
+                    <legend>Member Information</legend>
+                    <table>
+                        <tr>
+                        <td>
+                            <ol>
+                                <li>
+                                    @Html.LabelFor(m => m.SecurityCode)
+                                    @Html.TextBoxFor(m => m.SecurityCode)
+                                    @Html.ValidationMessageFor(m => m.SecurityCode)
+                                </li>
+                                <li>
+                                    @Html.LabelFor(m => m.StudentName)
+                                    @Html.TextBoxFor(m => m.StudentName)
+                                    @Html.ValidationMessageFor(m => m.StudentName)
+                                </li>
+                                <li>
+                                    @Html.LabelFor(m => m.SchoolName)
+                                    @Html.TextBoxFor(m => m.SchoolName)
+                                    @Html.ValidationMessageFor(m => m.SchoolName)
+                                </li>
+                            </ol>
+                        </td>
+                        <td>
+                            <ol>
+                                <li>
+                                    @Html.LabelFor(m => m.ParentName)
+                                    @Html.TextBoxFor(m => m.ParentName)
+                                    @Html.ValidationMessageFor(m => m.ParentName)
+                                </li>
+                                <li>
+                                    @Html.LabelFor(m => m.HomeAddress)
+                                    @Html.TextBoxFor(m => m.HomeAddress)
+                                    @Html.ValidationMessageFor(m => m.HomeAddress)
+                                </li>
+                                <li>
+                                    @Html.LabelFor(m => m.HomePhone)
+                                    @Html.TextBoxFor(m => m.HomePhone)
+                                    @Html.ValidationMessageFor(m => m.HomePhone)
+                                </li>
+                               
+                            </ol>
+                        </td>
+                            </tr>
+                    </table>
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+    
+    @*<fieldset>
+        <legend>Payment information</legend>*@
+        @*<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" style="margin-right:7px;"  OnClick="PostToPayPal"/>*@
+        @*<imagebutton id="imagebutton1" runat="server"
+             alternatetext="ImageButton 1"
+             imagealign="left"
+             imageurl="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"
+             onclick="PostToPayPal" />*@
+        @*<button>
+            <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"   id="PayPalButton"  onclick="PostToPayPal" />
+        </button>*@
+        @*<button name="PayPalButton" style="margin-right: 7px;" onclick="PostToPayPal()">
+            <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" />
+        </button>*@
+    @*</fieldset>*@
+      
+     
+    <input type="submit" value="Register" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
